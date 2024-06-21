@@ -22,27 +22,26 @@ import ex01.config.AppConfig;
 import ex01.config.WebConfig;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes= {WebConfig.class, AppConfig.class})
-@WebAppConfiguration   //MockMvc 할때 반드시 필요
+@ContextConfiguration(classes={WebConfig.class, AppConfig.class})
+@WebAppConfiguration
 public class MyFilterTest {
-   private MockMvc mvc;
-   
-   @BeforeEach
-   public void setup(WebApplicationContext applicationContext) {
-      Filter myFilter = applicationContext.getBean("myFilter", Filter.class);
-      mvc= MockMvcBuilders
-            .webAppContextSetup(applicationContext)
-            .addFilter(new DelegatingFilterProxy(myFilter), "/*")
-            .build();
-   }
-   
-   @Test
-   public void testMyFilter() throws Throwable{
-      mvc
-         .perform(get("/hello"))
-         .andExpect(status().isOk())
-         .andExpect(cookie().value("MyFilter", "Works"))
-         .andDo(print());
-   }
-   
+	private MockMvc mvc;
+
+	@BeforeEach
+	public void setup(WebApplicationContext applicationContext) {
+		Filter myFilter = applicationContext.getBean("myFilter", Filter.class);
+		mvc = MockMvcBuilders
+				.webAppContextSetup(applicationContext)
+				.addFilter(new DelegatingFilterProxy(myFilter), "/*")
+				.build();
+	}
+	
+	@Test
+	public void testMyFilter() throws Throwable{
+		mvc
+			.perform(get("/hello"))
+			.andExpect(status().isOk())
+			.andExpect(cookie().value("MyFilter", "Works"))
+			.andDo(print());
+	}
 }

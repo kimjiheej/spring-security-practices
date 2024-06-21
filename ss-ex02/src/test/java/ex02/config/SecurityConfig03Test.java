@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 
-
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes={WebConfig.class, SecurityConfig03.class})
 @WebAppConfiguration
@@ -74,5 +73,4 @@ public class SecurityConfig03Test {
 			.andExpect(cookie().value("MySecurityFilter04", "Works"));
 	}
 }
-
 

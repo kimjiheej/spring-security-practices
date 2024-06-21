@@ -22,8 +22,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes= {WebConfig.class, SecurityConfig02.class})
+@ContextConfiguration(classes={WebConfig.class, SecurityConfig02.class})
 @WebAppConfiguration
 public class SecurityConfig02Test {
     private MockMvc mvc;
@@ -41,12 +42,12 @@ public class SecurityConfig02Test {
     @Test
     public void testSecurityFilterChains() {
         List<SecurityFilterChain> SecurityFilterChains = filterChainProxy.getFilterChains();
-        assertEquals(1, SecurityFilterChains.size());
+        assertEquals(2, SecurityFilterChains.size());
     }
 
     @Test
     public void testSecurityFilters() {
-        SecurityFilterChain securityFilterChain = filterChainProxy.getFilterChains().get(0);
+        SecurityFilterChain securityFilterChain = filterChainProxy.getFilterChains().get(1);
         List<Filter> filters =  securityFilterChain.getFilters();
 
         assertEquals(11, filters.size());

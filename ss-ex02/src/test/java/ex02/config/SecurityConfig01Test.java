@@ -77,4 +77,3 @@ public class SecurityConfig01Test {
 	}
 }
 
-
