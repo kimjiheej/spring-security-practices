@@ -26,6 +26,8 @@ public class SecurityConfig01 {
 			new SecurityFilterChain() {
 				public boolean matches(HttpServletRequest request) {
 					String uri = request.getRequestURI().replaceAll(request.getContextPath(), "");
+					
+					// 해당 요청에 대해 아무론 필터 없다 
 					return new AntPathMatcher().match("/assets/**", uri);
 				}
 				public List<Filter> getFilters() {

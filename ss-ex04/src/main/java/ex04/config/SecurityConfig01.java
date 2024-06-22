@@ -29,6 +29,10 @@ public class SecurityConfig01 {
     	// UsernamePasswordAuthenticationFilter
     	// DefaultLoginPageGeneratingFilter
     	// DefaultLogoutPageGeneratingFilter
+    	
+    	/*
+    	 securityFilterChain() 메서드에서는 HttpSecurity 객체를 사용하여 .formLogin()을 설정하였습니다. 이는 폼 기반 로그인을 활성화하고, /login 페이지를 자동으로 생성하여 사용자에게 제공합니다.
+    	 */
     	http
         	.formLogin();
         
